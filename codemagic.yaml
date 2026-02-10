@@ -1,0 +1,35 @@
+workflows:
+  android-workflow:
+    name: Android Build
+    max_build_duration: 60
+    instance_type: linux
+    environment:
+      node: 18
+      java: 17
+    scripts:
+      - name: Install dependencies
+        script: | 
+          cd mobile
+          npm install
+      - name: Build web assets
+        script: | 
+          cd mobile
+          npm run build
+      - name: Sync Capacitor
+        script: | 
+          cd mobile
+          npx cap sync android
+      - name: Build Android APK
+        script: | 
+          cd mobile/android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+    artifacts:
+      - mobile/android/app/build/outputs/apk/debug/app-debug.apk
+    publishing:
+      email:
+        recipients:
+          - you@example.com # Replace with your email
+        notify:
+          success: true
+          failure: true
