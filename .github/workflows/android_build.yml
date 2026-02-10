@@ -22,6 +22,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Install Android SDK Platform 34
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -34,6 +37,31 @@ jobs:
       - name: Build Web Assets
         working-directory: ./mobile
         run: npm run build
+
+      - name: Remove old android project
+        working-directory: ./mobile
+        run: rm -rf android
+
+      - name: Re-add Android platform
+        working-directory: ./mobile
+        run: npx cap add android
+
+      - name: Apply custom config
+        working-directory: ./mobile
+        run: |
+          # Update namespace and applicationId
+          sed -i 's/io\.ionic\.starter/com.garage.simulation/g' android/app/build.gradle
+          # Update app name in strings.xml
+          sed -i 's/<string name="app_name">mobile</<string name="app_name">Garage Simulation</g' android/app/src/main/res/values/strings.xml
+          sed -i 's/<string name="title_activity_main">mobile</<string name="title_activity_main">Garage Simulation</g' android/app/src/main/res/values/strings.xml
+          # Move MainActivity to correct package
+          mkdir -p android/app/src/main/java/com/garage/simulation
+          cat > android/app/src/main/java/com/garage/simulation/MainActivity.java << 'EOF'
+          package com.garage.simulation;
+          import com.getcapacitor.BridgeActivity;
+          public class MainActivity extends BridgeActivity {}
+          EOF
+          rm -rf android/app/src/main/java/io
 
       - name: Sync Capacitor
         working-directory: ./mobile
