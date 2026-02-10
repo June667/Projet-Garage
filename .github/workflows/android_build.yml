@@ -46,14 +46,19 @@ jobs:
         working-directory: ./mobile
         run: npx cap add android
 
-      - name: Apply custom config
+      - name: Fix Java compatibility and apply custom config
         working-directory: ./mobile
         run: |
+          # Fix Java source/target compatibility from 21 to 17
+          sed -i 's/JavaVersion.VERSION_21/JavaVersion.VERSION_17/g' android/app/build.gradle
+
           # Update namespace and applicationId
           sed -i 's/io\.ionic\.starter/com.garage.simulation/g' android/app/build.gradle
+
           # Update app name in strings.xml
-          sed -i 's/<string name="app_name">mobile</<string name="app_name">Garage Simulation</g' android/app/src/main/res/values/strings.xml
-          sed -i 's/<string name="title_activity_main">mobile</<string name="title_activity_main">Garage Simulation</g' android/app/src/main/res/values/strings.xml
+          sed -i 's|<string name="app_name">mobile</string>|<string name="app_name">Garage Simulation</string>|g' android/app/src/main/res/values/strings.xml
+          sed -i 's|<string name="title_activity_main">mobile</string>|<string name="title_activity_main">Garage Simulation</string>|g' android/app/src/main/res/values/strings.xml
+
           # Move MainActivity to correct package
           mkdir -p android/app/src/main/java/com/garage/simulation
           cat > android/app/src/main/java/com/garage/simulation/MainActivity.java << 'EOF'
