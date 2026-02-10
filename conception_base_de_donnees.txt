@@ -1,0 +1,36 @@
+CONCEPTION DE LA BASE DE DONNÉES - PROJET MOBILE
+
+Système de Gestion de Base de Données : PostgreSQL
+
+Ce projet utilise une base de données relationnelle pour gérer les utilisateurs, leurs véhicules et les incidents (problèmes) signalés.
+
+STRUCTURE DES TABLES :
+
+1. Table 'users' (Utilisateurs)
+   - id : Clé primaire (SERIAL)
+   - email : Adresse email unique de l'utilisateur (VARCHAR, Unique, Non Null)
+   - password : Mot de passe de l'utilisateur (VARCHAR, Non Null)
+   - name : Nom complet de l'utilisateur (VARCHAR)
+
+2. Table 'cars' (Véhicules)
+   - id : Clé primaire (SERIAL)
+   - make : Marque du véhicule (VARCHAR, Non Null)
+   - model : Modèle du véhicule (VARCHAR, Non Null)
+   - year : Année de fabrication (INTEGER)
+   - owner_id : Clé étrangère vers users.id (INTEGER, Références users)
+
+3. Table 'issues' (Problèmes/Incidents)
+   - id : Clé primaire (SERIAL)
+   - description : Description du problème (TEXT, Non Null)
+   - severity : Niveau de gravité (VARCHAR)
+   - car_id : Clé étrangère vers cars.id (INTEGER, Références cars)
+   - status : État du problème (VARCHAR, Défaut: 'open')
+   - created_at : Date et heure de création (TIMESTAMP, Défaut: CURRENT_TIMESTAMP)
+
+RELATIONS :
+
+- Relation Utilisateur -> Voitures (1:N) : Un utilisateur peut posséder plusieurs véhicules. Chaque véhicule est lié à un utilisateur unique via le champ 'owner_id'.
+- Relation Voiture -> Problèmes (1:N) : Un véhicule peut avoir plusieurs problèmes signalés. Chaque problème est lié à un véhicule spécifique via le champ 'car_id'.
+
+RÉSUMÉ :
+La base de données est conçue pour permettre une traçabilité complète : de l'utilisateur à ses véhicules, et des véhicules aux incidents signalés.

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Suivi de Projet</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .high { background-color: #ffcccc; }
+        .medium { background-color: #ffffcc; }
+        .low { background-color: #ccffcc; }
+        .completed { color: green; font-weight: bold; }
+        .in-progress { color: orange; font-weight: bold; }
+        .not-started { color: gray; }
+        .planned { color: blue; }
+        .summary { background-color: #e6f3ff; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Suivi de Projet</h1>
+    
+    <div class="summary">
+        <h2>Résumé</h2>
+        <p><strong>Nombre total d'heures :</strong> 136 heures</p>
+        <p><strong>Statut :</strong> 30% Terminé, 70% Restant</p>
+    </div>
+    
+    <h2>Répartition des Tâches</h2>
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Composant</th>
+            <th>Tâche</th>
+            <th>Priorité</th>
+            <th>Assigné à</th>
+            <th>Heures Initiales</th>
+            <th>Heures</th>
+            <th>Jours Nécessaires</th>
+            <th>Statut</th>
+            <th>Semaine</th>
+        </tr>
+        <tr>
+            <td>Mobile</td><td>Authentification</td><td>Système de Connexion</td><td class="high">Haute</td><td>ETU003558</td><td>25</td><td>8</td><td>1</td><td class="planned">Planifié</td><td>1</td>
+        </tr>
+        <tr>
+            <td>Mobile</td><td>Authentification</td><td>Système d'Inscription</td><td class="high">Haute</td><td>ETU003558</td><td>25</td><td>7</td><td>1</td><td class="planned">Planifié</td><td>1</td>
+        </tr>
+        <tr>
+            <td>Mobile</td><td>Gestion des Véhicules</td><td>Liste de Voitures de Base</td><td class="high">Haute</td><td>ETU003558</td><td>70</td><td>15</td><td>2</td><td class="in-progress">En Cours</td><td>1-2</td>
+        </tr>
+        <tr>
+            <td>Mobile</td><td>Système de Réparation</td><td>Formulaire de Réparation Simple</td><td class="medium">Moyenne</td><td>ETU003590</td><td>45</td><td>10</td><td>1</td><td class="not-started">Pas Commencé</td><td>2</td>
+        </tr>
+        <tr>
+            <td>Web</td><td>Backoffice</td><td>Connexion de Base</td><td class="high">Haute</td><td>ETU003623</td><td>40</td><td>10</td><td>1</td><td class="completed">Terminé</td><td>1</td>
+        </tr>
+        <tr>
+            <td>Web</td><td>Interventions</td><td>Opérations CRUD</td><td class="high">Haute</td><td>ETU003597</td><td>65</td><td>15</td><td>2</td><td class="in-progress">En Cours</td><td>1-2</td>
+        </tr>
+        <tr>
+            <td>Godot</td><td>Conception de Jeu</td><td>Arrière-plan & Personnage</td><td class="high">Haute</td><td>ETU003597</td><td>45</td><td>20</td><td>3</td><td class="completed">Terminé</td><td>1</td>
+        </tr>
+        <tr>
+            <td>Godot</td><td>Conception de Jeu</td><td>Éléments de Voitures</td><td class="medium">Moyenne</td><td>ETU003597</td><td>30</td><td>10</td><td>2</td><td class="in-progress">En Cours</td><td>1-2</td>
+        </tr>
+    </table>
+    
+    <h2>Calendrier Hebdomadaire</h2>
+    <table>
+        <tr><th>Semaine</th><th>Jours</th><th>Domaine d'Action</th><th>Heures</th><th>Livrables</th></tr>
+        <tr><td>Semaine 1</td><td>1-5</td><td>Fondations & Configuration</td><td>40</td><td>Auth. de base, env. Godot, éléments initiaux</td></tr>
+        <tr><td>Semaine 2</td><td>6-10</td><td>Fonctionnalités Principales</td><td>40</td><td>Gestion de voitures, gameplay de base, opérations CRUD</td></tr>
+        <tr><td>Semaine 3</td><td>11-15</td><td>Intégration</td><td>40</td><td>Connexions API, flux de travail, tests</td></tr>
+        <tr><td>Marge de sécurité</td><td>16-17</td><td>Peaufinage & Préparation</td><td>16</td><td>Finitions, documentation, présentation</td></tr>
+    </table>
+    
+    <h2>Allocation des Ressources</h2>
+    <table>
+        <tr><th>Membre de l'Équipe</th><th>Heures Totales</th><th>Heures/Jour</th><th>Principales Responsabilités</th></tr>
+        <tr><td>ETU003558 (Arlho)</td><td>30</td><td>1.8</td><td>Auth. mobile, interface de base</td></tr>
+        <tr><td>ETU003590 (Joiadah)</td><td>10</td><td>0.6</td><td>Système de réparation mobile</td></tr>
+        <tr><td>ETU003597 (Itoavina)</td><td>53</td><td>3.1</td><td>Développement Godot, CRUD Web</td></tr>
+        <tr><td>ETU003623 (Liantsoa)</td><td>20</td><td>1.2</td><td>Connexion Web, liste de clients</td></tr>
+        <tr><td>Partagé par l'équipe</td><td>23</td><td>1.4</td><td>Intégration, tests, documentation</td></tr>
+    </table>
+</body>
+</html>

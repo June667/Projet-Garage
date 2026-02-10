@@ -1,0 +1,12 @@
+Summary of what just changed:
+Component	Command	Access URL
+Backend	npm start	http://192.168.88.13:3000
+Frontend	npm run dev -- --host	http://192.168.88.13:5173
+
+test@mobile.com / mobile123
+
+synchronisation firebase
+unification des tables web & mobile
+optimisation de la gestion des signalements
+optimisation du workflow utilisateurs
+mise en relation des tables selon l'authentification

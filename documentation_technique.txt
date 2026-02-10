@@ -1,0 +1,47 @@
+DOCUMENTATION TECHNIQUE - SYSTÈME DE GESTION MOBILE
+
+1. ARCHITECTURE TECHNIQUE
+
+- Frontend : Ionic React
+  - Framework : React.js avec les composants UI d'Ionic pour une expérience mobile native.
+  - Build Tool : Vite.js pour une compilation rapide.
+  - Native : Capacitor pour le déploiement sur Android/iOS.
+- Backend : Node.js / Express
+  - Serveur REST API pour le traitement des requêtes.
+  - Gestion des CORS pour la communication sécurisée avec le frontend mobile.
+- Base de Données : PostgreSQL
+  - Base relationnelle robuste pour la gestion des données structurées.
+
+(À modifier, passer de Vite.js à Vue.js)
+
+2. LOGIQUE MÉTIER ET FONCTIONNALITÉS
+
+A. Authentification (Login)
+   - Objectif : Sécuriser l'accès aux fonctionnalités de l'application.
+   - Logique : 
+     1. L'utilisateur saisit son email et son mot de passe.
+     2. Le frontend envoie une requête POST à l'API backend (/login).
+     3. Le backend interroge la table 'users' pour vérifier les identifiants.
+     4. En cas de succès, l'utilisateur est redirigé vers l'interface principale et ses informations de session sont stockées.
+
+B. Gestion des Véhicules (Insertion)
+   - Objectif : Permettre au client d'enregistrer ses véhicules.
+   - Logique :
+     1. Formulaire de saisie (Marque, Modèle, Année).
+     2. Envoi des données via une requête POST à /cars.
+     3. Le système lie automatiquement le véhicule à l'utilisateur connecté via son ID (owner_id).
+     4. Les données sont persistées dans la table 'cars'.
+
+C. Signalement d'Interventions (Report d'incident)
+   - Objectif : Déclarer un problème ou une demande d'intervention sur un véhicule.
+   - Logique :
+     1. Récupération préalable de la liste des véhicules enregistrés via une requête GET (/cars).
+     2. Sélection du véhicule concerné par l'utilisateur.
+     3. Saisie de la description du problème et choix de la sévérité (ex: Faible, Haute).
+     4. Envoi d'une requête POST à /issues.
+     5. Création d'une entrée dans la table 'issues' liée au car_id sélectionné.
+     6. Statut initialisé par défaut à 'open' (ouvert) pour permettre le suivi par les techniciens.
+
+3. SÉCURITÉ ET PERSISTANCE
+- Les données sont stockées de manière centralisée dans PostgreSQL.
+- La séparation claire entre le frontend (React) et le backend (Express) permet une maintenance isolée et une scalabilité du système.
